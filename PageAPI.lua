@@ -107,5 +107,5 @@ end
 function API.EditPage(PageName,DataTable)
     Pages[PageName]["PageData"] = DataTable
 end
-
-API.MakePage("TestPage",API.ButtonPanel(),{})
+local ButtonPanel = API.ButtonPanel()
+API.MakePage("TestPage",ButtonPanel,{})
