@@ -58,7 +58,7 @@ function API.MakePage(PageName,ParentPanel,PageTable,OverRidePageFunction,OverRi
             ["Text"] = PageName,
             ["Color"] = ExtraData.rgb(0,0,0)
         }
-        ["PageData"] = {},
+        ["PageData"] = {}
     }
 
     if #Pages == 1 then 
