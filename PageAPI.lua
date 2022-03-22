@@ -6,6 +6,8 @@ local event = require("event")
 local computer = require("computer")
 local Client = require("Client")
 local ExtraData = require("ExtraData")
+local serialization = require("serialization")
+
 local API = {}
 local Pages = {}
 
@@ -29,7 +31,7 @@ function API.ButtonPanel(Color,Size,pos,)
 
     }
     
-
+    print(serialization.serialize(GUITable))
     return GUITable 
 end
 

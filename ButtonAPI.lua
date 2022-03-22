@@ -17,7 +17,6 @@ local Red = ExtraData.rgb(255,0,0)
 local Black = ExtraData.rgb(0,0,0)
 
 
-
 function API.clear()
     Screen.setBackground(Black)
     Screen.fill(1, 1, w, h, " ")
