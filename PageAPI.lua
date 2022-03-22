@@ -98,6 +98,7 @@ end
 function API.DrawPage(PageName,ParentPanel,PageTable,Page)
     API.clear()
     table.insert(ParentPanel["Iteams"],Page)
+    print(serialization.serialize(ParentPanel,true))
 end
 
 function API.GetPageData(PageName)
