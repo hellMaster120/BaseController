@@ -10,35 +10,35 @@ FilePaths = {
     },
 	{
         ["Name"] = "Server.lua",
-        ["Path"] = "https://pastebin.com/raw/1LSFx5xa"
+        ["Path"] = "https://raw.githubusercontent.com/hellMaster120/BaseController/main/Server.lua"
     },
 	{
         ["Name"] = "Clinet.lua",
-        ["Path"] = "https://pastebin.com/raw/SG2FQ61d"
+        ["Path"] = "https://raw.githubusercontent.com/hellMaster120/BaseController/main/Client.lua"
     },
 	{
         ["Name"] = "PageAPI.lua",
-        ["Path"] = "https://pastebin.com/raw/X45guLdf"
+        ["Path"] = "https://raw.githubusercontent.com/hellMaster120/BaseController/main/PageAPI.lua"
     },
 	{
         ["Name"] = "ButtonAPI.lua",
-        ["Path"] = "https://pastebin.com/raw/TGBBpV1Q"
+        ["Path"] = "https://raw.githubusercontent.com/hellMaster120/BaseController/main/ButtonAPI.lua"
     },
 	{
         ["Name"] = "ReatorAPI.lua",
-        ["Path"] = "https://pastebin.com/raw/Wx0ujCz0"
+        ["Path"] = "https://raw.githubusercontent.com/hellMaster120/BaseController/main/ReatorAPI.lua"
     },
 	{
         ["Name"] = "Main.lua",
-        ["Path"] = "https://pastebin.com/raw/2VX3r8mv"
+        ["Path"] = "https://raw.githubusercontent.com/hellMaster120/BaseController/main/Main.lua"
     },
 	{
         ["Name"] = "ExtraData.lua",
-        ["Path"] = "https://pastebin.com/raw/bcGDrgxR"
+        ["Path"] = "https://raw.githubusercontent.com/hellMaster120/BaseController/main/ExtraData.lua"
     },
     {
         ["Name"] = "Uninstall.lua",
-        ["Path"] = "https://pastebin.com/raw/RwTVMRZ2"
+        ["Path"] = "https://raw.githubusercontent.com/hellMaster120/BaseController/main/Uninstall.lua"
     }
 }
 
