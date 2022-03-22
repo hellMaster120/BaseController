@@ -98,11 +98,6 @@ end
 function API.DrawPage(PageName,ParentPanel,PageTable,Page) do
     API.clear()
     table.insert(ParentPanel["Iteams"],Page)
-
-end
-
-function API.DrawPages() do
-    API.clear() 
 end
 
 function API.GetPageData(PageName)
@@ -113,15 +108,4 @@ function API.EditPage(PageName,DataTable)
     Pages[PageName]["PageData"] = DataTable
 end
 
-
-function API.Update() 
-    Client.GetServerData()
-end
-
 API.MakePage("TestPage",API.ButtonPanel(),{})
-
-while true do 
-    API.Update()
-end
-
-return API
