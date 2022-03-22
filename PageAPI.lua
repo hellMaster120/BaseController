@@ -31,7 +31,7 @@ function API.ButtonPanel(Color,Size,pos)
 
     }
     
-    print(serialization.serialize(GUITable))
+
     return GUITable 
 end
 
@@ -95,7 +95,7 @@ function API.SetCurrentPage(PageName,Page)
     Page["CurrentPage"] = true
 end
 
-function API.DrawPage(PageName,ParentPanel,PageTable,Page) do
+function API.DrawPage(PageName,ParentPanel,PageTable,Page)
     API.clear()
     table.insert(ParentPanel["Iteams"],Page)
 end
@@ -107,5 +107,5 @@ end
 function API.EditPage(PageName,DataTable)
     Pages[PageName]["PageData"] = DataTable
 end
-local ButtonPanel = API.ButtonPanel()
-API.MakePage("TestPage",ButtonPanel,{})
+
+API.MakePage("TestPage",API.ButtonPanel())
