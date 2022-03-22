@@ -57,7 +57,7 @@ function API.MakePage(PageName,ParentPanel,PageTable,OverRidePageFunction,OverRi
             ["Pos"] = ExtraData.Vector2(0,0),
             ["Text"] = PageName,
             ["Color"] = ExtraData.rgb(0,0,0)
-        }
+        },
         ["PageData"] = {}
     }
 
