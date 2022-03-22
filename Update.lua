@@ -42,6 +42,10 @@ FilePaths = {
         ["Path"] = "https://raw.githubusercontent.com/hellMaster120/BaseController/main/Uninstall.lua"
     },
     {
+        ["Name"] = "Install.lua",
+        ["Path"] = "https://raw.githubusercontent.com/hellMaster120/BaseController/main/Install.lua"
+    },
+    {
         ["Name"] = "Update.lua",
         ["Path"] = "https://raw.githubusercontent.com/hellMaster120/BaseController/main/Update.lua"
     }
