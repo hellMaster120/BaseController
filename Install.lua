@@ -39,9 +39,12 @@ FilePaths = {
     {
         ["Name"] = "Uninstall.lua",
         ["Path"] = "https://raw.githubusercontent.com/hellMaster120/BaseController/main/Uninstall.lua"
+    },
+    {
+        ["Name"] = "Update.lua",
+        ["Path"] = "https://raw.githubusercontent.com/hellMaster120/BaseController/main/Update.lua"
     }
 }
-
 for name,val in pairs(FilePaths) do
     print("Downloading "..val["Name"].." to /home/"..val["Name"].." from "..val["Path"].."....")
     wget("-fq",val["Path"], "/home/"..val["Name"])
