@@ -73,9 +73,9 @@ function API.MakePage(PageName,ParentPanel,PageTable,OverRidePageFunction,OverRi
     if ClickedFunction == NULL then
         Page["OverRideFunctions"]["ClickFunction"] = function(CurrentPage,ClickedPage)
             if CurrentPage == ClickedPage then return end
-            if CurrentPage != ClickedPage then 
+            if CurrentPage == not ClickedPage then 
                 API.SetCurrentPage(PageName,Page) 
-                Api.DrawPage((PageName,ParentPanel,PageTable,Page)
+                Api.DrawPage(PageName,ParentPanel,PageTable,Page)
             end
         end
     else
@@ -102,9 +102,7 @@ function API.DrawPage(PageName,ParentPanel,PageTable,Page) do
 end
 
 function API.DrawPages() do
-    API.clear()
-    
-
+    API.clear() 
 end
 
 function API.GetPageData(PageName)
@@ -118,7 +116,6 @@ end
 
 function API.Update() 
     Client.GetServerData()
-
 end
 
 API.MakePage("TestPage",API.ButtonPanel(),{})
@@ -126,6 +123,5 @@ API.MakePage("TestPage",API.ButtonPanel(),{})
 while true do 
     API.Update()
 end
-
 
 return API
