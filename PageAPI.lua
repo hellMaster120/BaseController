@@ -24,7 +24,7 @@ function API.clear()
     Screen.fill(1, 1, w, h, " ")
 end
 
-function API.ButtonPanel(Color,Size,pos,) 
+function API.ButtonPanel(Color,Size,pos) 
     local GUITable = {
         ["Panels"] = {},
         ["Iteams"] = {}
