@@ -1,4 +1,9 @@
 local file = require("filesystem")
+local shell = require("shell")
+local wget = loadfile(shell.resolve("wget","lua"))
+if not wget then
+  io.stderr:write("cannot use this installer without an internet card and wget")
+end
 FilePaths = {
     {
         ["Name"] = "NetworkingAPI.lua",
