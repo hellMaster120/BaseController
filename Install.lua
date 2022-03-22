@@ -6,7 +6,7 @@ end
 FilePaths = {
     {
         ["Name"] = "NetworkingAPI.lua",
-        ["Path"] = "https://pastebin.com/raw/ghygSba7"
+        ["Path"] = "https://raw.githubusercontent.com/hellMaster120/BaseController/main/NetworkingAPI.lua""
     },
 	{
         ["Name"] = "Server.lua",
