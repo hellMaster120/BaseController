@@ -57,6 +57,6 @@ for name,val in pairs(FilePaths) do
         file.remove("/home/"..val["Name"])
     end
     wget("-fq",val["Path"], "/home/"..val["Name"])
-    sleep(3)
+    os.sleep(0.5)
 end
 print("Done")
