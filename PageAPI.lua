@@ -88,7 +88,7 @@ function API.MakePage(PageName,ParentPanel,PageTable,OverRidePageFunction,OverRi
     end
 
     if OverRidePageFunction == NULL then
-        Page["OverRideFunctions"]["PageLoadFunction"] = API.PageLoadFunction
+        Page["OverRideFunctions"]["PageLoadFunction"] = API.PageLoadFunction()
     else
         Page["OverRideFunctions"]["PageLoadFunction"] = OverRidePageFunction(PageName,ParentPanel,PageTable,Page)
     end
