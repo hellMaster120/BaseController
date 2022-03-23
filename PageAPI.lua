@@ -4,12 +4,12 @@ local colors = require("colors")
 local term = require("term")
 local event = require("event")
 local computer = require("computer")
-local Client = require("Client")
 local ExtraData = require("ExtraData")
 local serialization = require("serialization")
 
 local API = {}
 local Pages = {}
+local GUITable = {}
 
 local Screen  = component.gpu
 local w, h = Screen.getResolution()
@@ -20,19 +20,21 @@ function API.rgbToHex(r,g,b)
 end
 
 function API.clear()
-    Screen.setBackground(Black)
+    Screen.setBackground(ExtraData.rgb(0,0,0))
     Screen.fill(1, 1, w, h, " ")
 end
 
-function API.ButtonPanel(Color,Size,pos) 
-    local GUITable = {
+function API.GetButtonPanelData(ID)
+    return GUITable[ID]
+end
+
+function API.ButtonPanel(ID,Color,Size,pos) 
+    GUITable[ID] = {
         ["Panels"] = {},
         ["Iteams"] = {}
-
     }
     
-
-    return GUITable 
+    return GUITable[ID] 
 end
 
 function API.LoadPageAim(PageName,AnimType) 
@@ -44,9 +46,10 @@ function API.SetCurrentPage(PageName,Page)
 end
 
 function API.DrawPage(PageName,ParentPanel,PageTable,Page)
-    API.clear()
-    table.insert(ParentPanel["Iteams"],Page)
-    print(serialization.serialize(ParentPanel,true))
+    if ParentPanel["Iteams"][PageName] == NULL then
+        ParentPanel["Iteams"][PageName] = {}
+    end
+    table.insert(ParentPanel["Iteams"][PageName],Page)
 end
 
 function API.GetPageData(PageName)
@@ -60,7 +63,7 @@ end
 function API.PageLoadFunction(PageName,ParentPanel,PageTable,Page) 
     if Page["CurrentPage"] == true then
         Page["PageData"] = PageTable
-        Api.DrawPage(PageName,ParentPanel,PageTable,Page) 
+        API.DrawPage(PageName,ParentPanel,PageTable,Page) 
     else 
         return
     end
@@ -68,6 +71,8 @@ end
 
 function API.MakePage(PageName,ParentPanel,PageTable,OverRidePageFunction,OverRideClickedFunction)
     local Page = Pages[PageName]
+    local CurrentPage = false
+
     local Page = {
         ["CurrentPage"] = false,
         ["OverRideFunctions"] = {
@@ -83,10 +88,13 @@ function API.MakePage(PageName,ParentPanel,PageTable,OverRidePageFunction,OverRi
         ["PageData"] = {}
     }
 
-    if #Pages == 1 then 
+    if #Pages == 0  then 
         Page["CurrentPage"] = true
+    else
+        Page["CurrentPage"] = false
     end
-
+    
+    print(serialization.serialize(Page,true))
     if OverRidePageFunction == NULL then
         API.PageLoadFunction(PageName,ParentPanel,PageTable,Page)
     else
@@ -110,4 +118,5 @@ function API.MakePage(PageName,ParentPanel,PageTable,OverRidePageFunction,OverRi
 end
 
 
-API.MakePage("TestPage",API.ButtonPanel())
+API.MakePage("TestPage",API.ButtonPanel(1))
+API.MakePage("TestPage2",API.GetButtonPanelData(1))
