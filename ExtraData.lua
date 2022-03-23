@@ -9,6 +9,14 @@ function API.Vector2(X,Y)
     return {["X"] = X,["Y"] = Y}
 end
 
+function API.GetTableNumber(Table)
+    local Count = 0
+    for i,t in pairs(Table) do
+        Count = Count+1
+    end
+    return Count
+end
+
 function API.rgb(r,g,b)
     local rgb = (r * 0x10000) + (g * 0x100) + b
     return rgb

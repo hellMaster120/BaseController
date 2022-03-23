@@ -4,6 +4,7 @@ local colors = require("colors")
 local term = require("term")
 local event = require("event")
 local computer = require("computer")
+local Client = require("Client")
 local ExtraData = require("ExtraData")
 local serialization = require("serialization")
 
@@ -46,6 +47,7 @@ function API.SetCurrentPage(PageName,Page)
 end
 
 function API.DrawPage(PageName,ParentPanel,PageTable,Page)
+    API.Clear()
     if ParentPanel["Iteams"][PageName] == NULL then
         ParentPanel["Iteams"][PageName] = {}
     end
@@ -70,10 +72,8 @@ function API.PageLoadFunction(PageName,ParentPanel,PageTable,Page)
 end
 
 function API.MakePage(PageName,ParentPanel,PageTable,OverRidePageFunction,OverRideClickedFunction)
-    local Page = Pages[PageName]
-    local CurrentPage = false
-
-    local Page = {
+   
+    Pages[PageName] = {
         ["CurrentPage"] = false,
         ["OverRideFunctions"] = {
             ["ClickFunction"] = NULL,
@@ -87,14 +87,17 @@ function API.MakePage(PageName,ParentPanel,PageTable,OverRidePageFunction,OverRi
         },
         ["PageData"] = {}
     }
-
-    if #Pages == 0  then 
+    local Page = Pages[PageName]
+    local Count = 0
+    for i,t in pairs(Pages) do
+        Count = Count+1
+    end
+    if Count == 1 then
         Page["CurrentPage"] = true
     else
         Page["CurrentPage"] = false
     end
-    
-    print(serialization.serialize(Page,true))
+
     if OverRidePageFunction == NULL then
         API.PageLoadFunction(PageName,ParentPanel,PageTable,Page)
     else
@@ -111,8 +114,6 @@ function API.MakePage(PageName,ParentPanel,PageTable,OverRidePageFunction,OverRi
     else
         Page["OverRideFunctions"]["ClickFunction"] = ClickedFunction(PageName,ParentPanel,PageTable,Page)
     end
-
-   
 
     return Page,PageName
 end
