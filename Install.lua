@@ -13,7 +13,7 @@ FilePaths = {
         ["Path"] = "https://raw.githubusercontent.com/hellMaster120/BaseController/main/Server.lua"
     },
 	{
-        ["Name"] = "Clinet.lua",
+        ["Name"] = "Client.lua",
         ["Path"] = "https://raw.githubusercontent.com/hellMaster120/BaseController/main/Client.lua"
     },
 	{
