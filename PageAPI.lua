@@ -35,6 +35,28 @@ function API.ButtonPanel(Color,Size,pos)
     return GUITable 
 end
 
+function API.LoadPageAim(PageName,AnimType) 
+    return {},{}
+end
+
+function API.SetCurrentPage(PageName,Page) 
+    Page["CurrentPage"] = true
+end
+
+function API.DrawPage(PageName,ParentPanel,PageTable,Page)
+    API.clear()
+    table.insert(ParentPanel["Iteams"],Page)
+    print(serialization.serialize(ParentPanel,true))
+end
+
+function API.GetPageData(PageName)
+    return Pages[PageName] 
+end
+
+function API.EditPage(PageName,DataTable)
+    Pages[PageName]["PageData"] = DataTable
+end
+
 function API.PageLoadFunction(PageName,ParentPanel,PageTable,Page) 
     if Page["CurrentPage"] == true then
         Page["PageData"] = PageTable
@@ -87,26 +109,5 @@ function API.MakePage(PageName,ParentPanel,PageTable,OverRidePageFunction,OverRi
     return Page,PageName
 end
 
-function API.LoadPageAim(PageName,AnimType) 
-    return {},{}
-end
-
-function API.SetCurrentPage(PageName,Page) 
-    Page["CurrentPage"] = true
-end
-
-function API.DrawPage(PageName,ParentPanel,PageTable,Page)
-    API.clear()
-    table.insert(ParentPanel["Iteams"],Page)
-    print(serialization.serialize(ParentPanel,true))
-end
-
-function API.GetPageData(PageName)
-    return Pages[PageName] 
-end
-
-function API.EditPage(PageName,DataTable)
-    Pages[PageName]["PageData"] = DataTable
-end
 
 API.MakePage("TestPage",API.ButtonPanel())
