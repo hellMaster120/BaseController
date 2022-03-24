@@ -30,16 +30,15 @@ function API.GetButtonPanelData(ID)
 end
 
 
-
 function API.ButtonPanel(ID) 
     GUITable[ID] = {
         ["Panels"] = {},
-        ["Iteams"] = {}
+        ["Items"] = {}
     }
     GUITable[ID]["Panels"] = {
         ["Size"] = ExtraData.Vector4(0,10,0,h*2),
         ["Pos"] = ExtraData.Vector2(0,0),
-        ["Color"] = ExtraData.rgb(100,100,255)
+        ["Color"] = ExtraData.rgb(100,100,100)
     }
     local oldColor = Screen.setBackground(GUITable[ID]["Panels"]["Color"])
     Screen.fill( 
@@ -62,16 +61,11 @@ function API.SetCurrentPage(PageName)
 end
 
 function API.DrawPage(PageName,ParentPanel,PageTable,Page)
-    API.Clear()
-    if ParentPanel["Iteams"][PageName] == NULL then
-        ParentPanel["Iteams"][PageName] = {}
+    if ParentPanel["Items"][PageName] == NULL then
+        ParentPanel["Items"][PageName] = {}
     end
-    table.insert(ParentPanel["Iteams"][PageName],Page)
-    
-    ButtonAPI.MakeButton(PageName,Pos,ExtraData.Vector4(0,10,0,h*2),function(name,Triggerd)
-        API.SetCurrentPage(name) 
-
-    end)
+    local Button = ButtonAPI.MakeButton(PageName,ParentPanel["Panels"][PageName]["Pos"]+ExtraData.Vector2(0,0),ExtraData.Vector4(0,10,0,4),Page["OverRideFunctions"]["ClickFunction"])
+    table.insert(ParentPanel["Items"][PageName],Button)
 end
 
 function API.GetPageData(PageName)
@@ -92,7 +86,6 @@ function API.PageLoadFunction(PageName,ParentPanel,PageTable,Page)
 end
 
 function API.MakePage(PageName,ParentPanel,PageTable,OverRidePageFunction,OverRideClickedFunction)
-   
     Pages[PageName] = {
         ["CurrentPage"] = false,
         ["OverRideFunctions"] = {
