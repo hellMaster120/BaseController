@@ -20,7 +20,7 @@ function API.rgbToHex(r,g,b)
     return rgb
 end
 
-function API.clear()
+function API.Clear()
     Screen.setBackground(ExtraData.rgb(0,0,0))
     Screen.fill(1, 1, w, h, " ")
 end
@@ -29,11 +29,26 @@ function API.GetButtonPanelData(ID)
     return GUITable[ID]
 end
 
-function API.ButtonPanel(ID,Color,Size,pos) 
+
+
+function API.ButtonPanel(ID) 
     GUITable[ID] = {
         ["Panels"] = {},
         ["Iteams"] = {}
     }
+    GUITable[ID]["Panels"] = {
+        ["Size"] = ExtraData.Vector4(0,10,0,h*2),
+        ["Pos"] = ExtraData.Vector2(0,0),
+        ["Color"] = ExtraData.rgb(100,100,255)
+    }
+    local oldColor = Screen.setBackground(GUITable[ID]["Panels"]["Color"])
+    Screen.fill( 
+    GUITable[ID]["Panels"]["Size"]["MinX"]+GUITable[ID]["Panels"]["Pos"]["X"],  
+    GUITable[ID]["Panels"]["Size"]["MinY"]+GUITable[ID]["Panels"]["Pos"]["Y"], 
+    (GUITable[ID]["Panels"]["Size"]["MaxX"]+GUITable[ID]["Panels"]["Pos"]["X"]- GUITable[ID]["Panels"]["Size"]["MinX"]+1)-GUITable[ID]["Panels"]["Pos"]["X"], 
+    (GUITable[ID]["Panels"]["Size"]["MaxY"]+GUITable[ID]["Panels"]["Pos"]["Y"]- GUITable[ID]["Panels"]["Size"]["MinY"]+1)-GUITable[ID]["Panels"]["Pos"]["Y"]
+    ," ")
+    Screen.setBackground(oldColor)
     
     return GUITable[ID] 
 end
@@ -42,8 +57,8 @@ function API.LoadPageAim(PageName,AnimType)
     return {},{}
 end
 
-function API.SetCurrentPage(PageName,Page) 
-    Page["CurrentPage"] = true
+function API.SetCurrentPage(PageName) 
+    Pages[PageName]["CurrentPage"] = true
 end
 
 function API.DrawPage(PageName,ParentPanel,PageTable,Page)
@@ -52,6 +67,11 @@ function API.DrawPage(PageName,ParentPanel,PageTable,Page)
         ParentPanel["Iteams"][PageName] = {}
     end
     table.insert(ParentPanel["Iteams"][PageName],Page)
+    
+    ButtonAPI.MakeButton(PageName,Pos,ExtraData.Vector4(0,10,0,h*2),function(name,Triggerd)
+        API.SetCurrentPage(name) 
+
+    end)
 end
 
 function API.GetPageData(PageName)
@@ -107,7 +127,7 @@ function API.MakePage(PageName,ParentPanel,PageTable,OverRidePageFunction,OverRi
         Page["OverRideFunctions"]["ClickFunction"] = function(CurrentPage,ClickedPage)
             if CurrentPage == ClickedPage then return end
             if CurrentPage == not ClickedPage then 
-                API.SetCurrentPage(PageName,Page) 
+                API.SetCurrentPage(PageName) 
                 Api.DrawPage(PageName,ParentPanel,PageTable,Page)
             end
         end
@@ -117,7 +137,3 @@ function API.MakePage(PageName,ParentPanel,PageTable,OverRidePageFunction,OverRi
 
     return Page,PageName
 end
-
-
-API.MakePage("TestPage",API.ButtonPanel(1))
-API.MakePage("TestPage2",API.GetButtonPanelData(1))
